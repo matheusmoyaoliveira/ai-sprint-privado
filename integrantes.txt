@@ -1,0 +1,8 @@
+Nome: Matheus Moya de Oliveira 		RM: 562822
+Nome: Daniel Nicolas Leoterio  		RM: 562186
+Nome: Ana Carolina Pereira Fontes	RM: 562145
+
+Token BotFather: 8000957918:AAF_3p2lQCzLcCFptAgAo4gEQakGwwHTaww
+
+Url Watson: https://api.us-south.assistant.watson.cloud.ibm.com/instances/57d89cae-105e-4184-ae9b-f484ec15e365
+Assistant ID: e0052216-3c89-4b5c-944f-bceef5417450

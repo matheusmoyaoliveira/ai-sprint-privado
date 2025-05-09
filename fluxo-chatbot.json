@@ -1,0 +1,267 @@
+[
+    {
+        "id": "58bbf8ba933518f1",
+        "type": "tab",
+        "label": "Fluxo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c0964780f1b6ef31",
+        "type": "telegram bot",
+        "botname": "Bot_HC_Telegram",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "testenvironment": false,
+        "updatemode": "polling",
+        "pollinterval": 300,
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": 6667,
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbothost": "0.0.0.0",
+        "localbotport": 8443,
+        "publicbotport": 8443,
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "727b799f69abe383",
+        "type": "change",
+        "z": "58bbf8ba933518f1",
+        "name": "Watson - Telegram",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.chatId",
+                "pt": "msg",
+                "to": "chatId_1",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.type",
+                "pt": "msg",
+                "to": "type_1",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.content",
+                "pt": "msg",
+                "to": "payload.output.generic[0].text",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 300,
+        "wires": [
+            [
+                "c75e55b2e2393266"
+            ]
+        ]
+    },
+    {
+        "id": "d0603970eef60286",
+        "type": "inject",
+        "z": "58bbf8ba933518f1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "037f9b84f534689b",
+        "type": "telegram receiver",
+        "z": "58bbf8ba933518f1",
+        "name": "Telegram Hospital Clinicas",
+        "bot": "c0964780f1b6ef31",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "x": 110,
+        "y": 220,
+        "wires": [
+            [
+                "35cbd533d4f446b5",
+                "1d6629983c84456d"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c75e55b2e2393266",
+        "type": "telegram sender",
+        "z": "58bbf8ba933518f1",
+        "name": "",
+        "bot": "c0964780f1b6ef31",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 1090,
+        "y": 280,
+        "wires": [
+            [
+                "8c34a684dc94cbe2"
+            ]
+        ]
+    },
+    {
+        "id": "1d6629983c84456d",
+        "type": "change",
+        "z": "58bbf8ba933518f1",
+        "name": "Telegram - Watson",
+        "rules": [
+            {
+                "t": "set",
+                "p": "chatId_1",
+                "pt": "msg",
+                "to": "payload.chatId",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "type_1",
+                "pt": "msg",
+                "to": "payload.type",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.input.text",
+                "pt": "msg",
+                "to": "payload.content",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 280,
+        "wires": [
+            [
+                "3e387b532ef12961",
+                "420839ac10b97cf5"
+            ]
+        ]
+    },
+    {
+        "id": "420839ac10b97cf5",
+        "type": "watson-conversation-v1",
+        "z": "58bbf8ba933518f1",
+        "name": "Watson Assistant",
+        "workspaceid": "e0052216-3c89-4b5c-944f-bceef5417450",
+        "multiuser": false,
+        "context": true,
+        "empty-payload": false,
+        "service-endpoint": "https://api.us-south.assistant.watson.cloud.ibm.com/instances/57d89cae-105e-4184-ae9b-f484ec15e365",
+        "timeout": "",
+        "optout-learning": false,
+        "x": 590,
+        "y": 320,
+        "wires": [
+            [
+                "dc5b6ed1638be76e",
+                "727b799f69abe383"
+            ]
+        ]
+    },
+    {
+        "id": "dc5b6ed1638be76e",
+        "type": "debug",
+        "z": "58bbf8ba933518f1",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "35cbd533d4f446b5",
+        "type": "debug",
+        "z": "58bbf8ba933518f1",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 180,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "3e387b532ef12961",
+        "type": "debug",
+        "z": "58bbf8ba933518f1",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "8c34a684dc94cbe2",
+        "type": "debug",
+        "z": "58bbf8ba933518f1",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1080,
+        "y": 400,
+        "wires": []
+    }
+]
