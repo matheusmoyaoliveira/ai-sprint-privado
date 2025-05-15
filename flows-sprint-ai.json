@@ -8,225 +8,31 @@
         "env": []
     },
     {
-        "id": "7c38bd979b338d50",
+        "id": "c0964780f1b6ef31",
         "type": "telegram bot",
-        "botname": "PizzariaSoria_bot",
+        "botname": "Bot_HC_Telegram",
         "usernames": "",
         "chatids": "",
         "baseapiurl": "",
+        "testenvironment": false,
         "updatemode": "polling",
-        "pollinterval": "300",
+        "pollinterval": 300,
         "usesocks": false,
         "sockshost": "",
         "socksprotocol": "socks5",
-        "socksport": "6667",
+        "socksport": 6667,
         "socksusername": "anonymous",
         "sockspassword": "",
         "bothost": "",
         "botpath": "",
-        "localbotport": "8443",
-        "publicbotport": "8443",
+        "localbothost": "0.0.0.0",
+        "localbotport": 8443,
+        "publicbotport": 8443,
         "privatekey": "",
         "certificate": "",
         "useselfsignedcertificate": false,
         "sslterminated": false,
         "verboselogging": false
-    },
-    {
-        "id": "e1843ec751fbc144",
-        "type": "telegram bot",
-        "botname": "HospitalClinicas_bot",
-        "usernames": "",
-        "chatids": "",
-        "baseapiurl": "",
-        "updatemode": "polling",
-        "pollinterval": "300",
-        "usesocks": false,
-        "sockshost": "",
-        "socksprotocol": "socks5",
-        "socksport": "6667",
-        "socksusername": "anonymous",
-        "sockspassword": "",
-        "bothost": "",
-        "botpath": "",
-        "localbotport": "8443",
-        "publicbotport": "8443",
-        "privatekey": "",
-        "certificate": "",
-        "useselfsignedcertificate": false,
-        "sslterminated": false,
-        "verboselogging": false
-    },
-    {
-        "id": "996cbd40ad29ad5f",
-        "type": "debug",
-        "z": "1e6154c3f03a9e31",
-        "name": "Debug Telegram",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 100,
-        "y": 240,
-        "wires": []
-    },
-    {
-        "id": "a3c36194e0f90735",
-        "type": "telegram sender",
-        "z": "1e6154c3f03a9e31",
-        "name": "",
-        "bot": "e1843ec751fbc144",
-        "haserroroutput": false,
-        "outputs": 1,
-        "x": 1090,
-        "y": 280,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "5f1c19f8d1c3d79f",
-        "type": "change",
-        "z": "1e6154c3f03a9e31",
-        "name": "HC - Assistant",
-        "rules": [
-            {
-                "t": "set",
-                "p": "user",
-                "pt": "msg",
-                "to": "payload.chatId",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "payload.input.text",
-                "pt": "msg",
-                "to": "payload.content",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.input.text",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 400,
-        "y": 420,
-        "wires": [
-            [
-                "025af59291a3da3a",
-                "a581eff81b8b5dc7"
-            ]
-        ]
-    },
-    {
-        "id": "025af59291a3da3a",
-        "type": "debug",
-        "z": "1e6154c3f03a9e31",
-        "name": "debug CHANGE",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 420,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "8d454f4756d70a9f",
-        "type": "debug",
-        "z": "1e6154c3f03a9e31",
-        "name": "debug ASSISTANT",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 630,
-        "y": 320,
-        "wires": []
-    },
-    {
-        "id": "6bcbf3bedd1b0aa8",
-        "type": "change",
-        "z": "1e6154c3f03a9e31",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.output.generic[0].text",
-                "tot": "msg",
-                "dc": true
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 860,
-        "y": 280,
-        "wires": [
-            [
-                "a3c36194e0f90735",
-                "307e23ebf6d0c626"
-            ]
-        ]
-    },
-    {
-        "id": "307e23ebf6d0c626",
-        "type": "debug",
-        "z": "1e6154c3f03a9e31",
-        "name": "debug CHANGE 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 910,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "62be5f9b6d076b6e",
-        "type": "telegram receiver",
-        "z": "1e6154c3f03a9e31",
-        "name": "Hospital das Clinicas Telegram",
-        "bot": "e1843ec751fbc144",
-        "saveDataDir": "",
-        "filterCommands": false,
-        "x": 130,
-        "y": 280,
-        "wires": [
-            [
-                "996cbd40ad29ad5f",
-                "5f1c19f8d1c3d79f"
-            ],
-            []
-        ]
     },
     {
         "id": "4d66b9fc38700aa4",
@@ -259,7 +65,8 @@
         "y": 120,
         "wires": [
             [
-                "287af53f3a39cdda"
+                "287af53f3a39cdda",
+                "watson"
             ]
         ]
     },
@@ -308,26 +115,207 @@
         ]
     },
     {
-        "id": "a581eff81b8b5dc7",
+        "id": "d1a1f2b3e4c5f6a7",
+        "type": "telegram receiver",
+        "z": "1e6154c3f03a9e31",
+        "name": "Telegram Bot",
+        "bot": "c0964780f1b6ef31",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "x": 90,
+        "y": 300,
+        "wires": [
+            [
+                "switch_type"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "switch_type",
+        "type": "switch",
+        "z": "1e6154c3f03a9e31",
+        "name": "Filtra mensagem",
+        "property": "payload.type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "voice",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "message",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 290,
+        "y": 300,
+        "wires": [
+            [
+                "f3d31f5948b40951"
+            ],
+            [
+                "prepare_watson"
+            ]
+        ]
+    },
+    {
+        "id": "prepare_watson",
+        "type": "change",
+        "z": "1e6154c3f03a9e31",
+        "name": "Para Watson",
+        "rules": [
+            {
+                "t": "set",
+                "p": "user",
+                "pt": "msg",
+                "to": "payload.chatId",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.content",
+                "tot": "msg"
+            }
+        ],
+        "x": 430,
+        "y": 440,
+        "wires": [
+            [
+                "watson",
+                "5b30d71d8490fabd"
+            ]
+        ]
+    },
+    {
+        "id": "watson",
         "type": "watson-assistant-v2",
         "z": "1e6154c3f03a9e31",
-        "name": "Bot_Hospital_Clinicas",
+        "name": "Assistant",
         "service-endpoint": "https://api.us-south.assistant.watson.cloud.ibm.com/instances/57d89cae-105e-4184-ae9b-f484ec15e365",
         "assistant_id": "59e9deaf-ef9c-4d37-804a-bdd6c36c0884",
         "debug": false,
         "restart": false,
-        "return_context": true,
+        "return_context": false,
         "alternate_intents": false,
-        "multisession": true,
+        "multisession": false,
         "timeout": "",
         "optout-learning": false,
         "persist-session-id": false,
-        "x": 640,
-        "y": 240,
+        "x": 660,
+        "y": 440,
         "wires": [
             [
-                "6bcbf3bedd1b0aa8"
+                "prepare_telegram",
+                "aaf322f4d8bef16e"
             ]
         ]
+    },
+    {
+        "id": "prepare_telegram",
+        "type": "change",
+        "z": "1e6154c3f03a9e31",
+        "name": "Para Telegram",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.chatId",
+                "pt": "msg",
+                "to": "user",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.type",
+                "pt": "msg",
+                "to": "message",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.content",
+                "pt": "msg",
+                "to": "payload.output.generic[0].text",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "x": 820,
+        "y": 320,
+        "wires": [
+            [
+                "telegram sender",
+                "ba833dad71d9d12d"
+            ]
+        ]
+    },
+    {
+        "id": "telegram sender",
+        "type": "telegram sender",
+        "z": "1e6154c3f03a9e31",
+        "name": "Responder Telegram",
+        "bot": "c0964780f1b6ef31",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 1080,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5b30d71d8490fabd",
+        "type": "debug",
+        "z": "1e6154c3f03a9e31",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "aaf322f4d8bef16e",
+        "type": "debug",
+        "z": "1e6154c3f03a9e31",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "ba833dad71d9d12d",
+        "type": "debug",
+        "z": "1e6154c3f03a9e31",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 990,
+        "y": 260,
+        "wires": []
     }
 ]
