@@ -35,7 +35,7 @@
     {
         "id": "e1843ec751fbc144",
         "type": "telegram bot",
-        "botname": "Hospital_Clinicas_bot",
+        "botname": "HospitalClinicas_bot",
         "usernames": "",
         "chatids": "",
         "baseapiurl": "",
@@ -70,30 +70,9 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 120,
-        "y": 220,
+        "x": 100,
+        "y": 240,
         "wires": []
-    },
-    {
-        "id": "2bccab19ca1726c4",
-        "type": "watson-conversation-v1",
-        "z": "1e6154c3f03a9e31",
-        "name": "",
-        "workspaceid": "ab8fddc8-bdde-4eaf-b87e-7c24ab611e9b",
-        "multiuser": false,
-        "context": true,
-        "empty-payload": false,
-        "service-endpoint": "https://api.us-south.assistant.watson.cloud.ibm.com/instances/599016be-94cc-405e-a58a-c053ec7f362f",
-        "timeout": "",
-        "optout-learning": false,
-        "x": 520,
-        "y": 440,
-        "wires": [
-            [
-                "8d454f4756d70a9f",
-                "6bcbf3bedd1b0aa8"
-            ]
-        ]
     },
     {
         "id": "a3c36194e0f90735",
@@ -103,8 +82,8 @@
         "bot": "e1843ec751fbc144",
         "haserroroutput": false,
         "outputs": 1,
-        "x": 790,
-        "y": 320,
+        "x": 1090,
+        "y": 280,
         "wires": [
             []
         ]
@@ -113,27 +92,27 @@
         "id": "5f1c19f8d1c3d79f",
         "type": "change",
         "z": "1e6154c3f03a9e31",
-        "name": "",
+        "name": "HC - Assistant",
         "rules": [
             {
                 "t": "set",
-                "p": "chatIDPARADEPOIS",
+                "p": "user",
                 "pt": "msg",
                 "to": "payload.chatId",
                 "tot": "msg"
             },
             {
                 "t": "set",
-                "p": "typePARADEPOIS",
+                "p": "payload.input.text",
                 "pt": "msg",
-                "to": "payload.type",
+                "to": "payload.content",
                 "tot": "msg"
             },
             {
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.content",
+                "to": "payload.input.text",
                 "tot": "msg"
             }
         ],
@@ -142,12 +121,12 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 300,
-        "y": 480,
+        "x": 400,
+        "y": 420,
         "wires": [
             [
                 "025af59291a3da3a",
-                "2bccab19ca1726c4"
+                "a581eff81b8b5dc7"
             ]
         ]
     },
@@ -164,8 +143,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 460,
-        "y": 580,
+        "x": 420,
+        "y": 460,
         "wires": []
     },
     {
@@ -181,8 +160,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 730,
-        "y": 580,
+        "x": 630,
+        "y": 320,
         "wires": []
     },
     {
@@ -193,24 +172,11 @@
         "rules": [
             {
                 "t": "set",
-                "p": "payload.chatId",
+                "p": "payload",
                 "pt": "msg",
-                "to": "chatIDPARADEPOIS",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "payload.type",
-                "pt": "msg",
-                "to": "typePARADEPOIS",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "payload.content",
-                "pt": "msg",
-                "to": "payload",
-                "tot": "msg"
+                "to": "payload.output.generic[0].text",
+                "tot": "msg",
+                "dc": true
             }
         ],
         "action": "",
@@ -218,8 +184,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 580,
-        "y": 320,
+        "x": 860,
+        "y": 280,
         "wires": [
             [
                 "a3c36194e0f90735",
@@ -240,24 +206,24 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 710,
-        "y": 180,
+        "x": 910,
+        "y": 220,
         "wires": []
     },
     {
         "id": "62be5f9b6d076b6e",
         "type": "telegram receiver",
         "z": "1e6154c3f03a9e31",
-        "name": "",
+        "name": "Hospital das Clinicas Telegram",
         "bot": "e1843ec751fbc144",
         "saveDataDir": "",
         "filterCommands": false,
-        "x": 80,
+        "x": 130,
         "y": 280,
         "wires": [
             [
                 "996cbd40ad29ad5f",
-                "23e2bc4031bfbae8"
+                "5f1c19f8d1c3d79f"
             ],
             []
         ]
@@ -289,12 +255,11 @@
         "discard-listening": false,
         "disable-precheck": false,
         "service-endpoint": "https://api.us-south.speech-to-text.watson.cloud.ibm.com/instances/c74f6cd0-c262-4e33-af9b-66424d8186db",
-        "x": 480,
-        "y": 60,
+        "x": 660,
+        "y": 120,
         "wires": [
             [
-                "287af53f3a39cdda",
-                "2bccab19ca1726c4"
+                "287af53f3a39cdda"
             ]
         ]
     },
@@ -311,7 +276,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 720,
+        "x": 680,
         "y": 60,
         "wires": []
     },
@@ -334,8 +299,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 260,
-        "y": 80,
+        "x": 420,
+        "y": 100,
         "wires": [
             [
                 "4d66b9fc38700aa4"
@@ -343,35 +308,25 @@
         ]
     },
     {
-        "id": "23e2bc4031bfbae8",
-        "type": "switch",
+        "id": "a581eff81b8b5dc7",
+        "type": "watson-assistant-v2",
         "z": "1e6154c3f03a9e31",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "voice",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "message",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 310,
-        "y": 280,
+        "name": "Bot_Hospital_Clinicas",
+        "service-endpoint": "https://api.us-south.assistant.watson.cloud.ibm.com/instances/57d89cae-105e-4184-ae9b-f484ec15e365",
+        "assistant_id": "59e9deaf-ef9c-4d37-804a-bdd6c36c0884",
+        "debug": false,
+        "restart": false,
+        "return_context": true,
+        "alternate_intents": false,
+        "multisession": true,
+        "timeout": "",
+        "optout-learning": false,
+        "persist-session-id": false,
+        "x": 640,
+        "y": 240,
         "wires": [
             [
-                "f3d31f5948b40951"
-            ],
-            [
-                "5f1c19f8d1c3d79f"
+                "6bcbf3bedd1b0aa8"
             ]
         ]
     }
