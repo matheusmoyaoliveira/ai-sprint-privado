@@ -14,20 +14,18 @@
         "usernames": "",
         "chatids": "",
         "baseapiurl": "",
-        "testenvironment": false,
         "updatemode": "polling",
-        "pollinterval": 300,
+        "pollinterval": "300",
         "usesocks": false,
         "sockshost": "",
         "socksprotocol": "socks5",
-        "socksport": 6667,
+        "socksport": "6667",
         "socksusername": "anonymous",
         "sockspassword": "",
         "bothost": "",
         "botpath": "",
-        "localbothost": "0.0.0.0",
-        "localbotport": 8443,
-        "publicbotport": 8443,
+        "localbotport": "8443",
+        "publicbotport": "8443",
         "privatekey": "",
         "certificate": "",
         "useselfsignedcertificate": false,
@@ -47,7 +45,7 @@
         "langcustom": "NoCustomisationSetting",
         "langcustomhidden": "",
         "custom-weight": "0.5",
-        "band": "NarrowbandModel",
+        "band": "BroadbandModel",
         "bandhidden": "",
         "keywords": "",
         "keywords-threshold": "0.5",
@@ -75,7 +73,7 @@
         "type": "debug",
         "z": "1e6154c3f03a9e31",
         "name": "debug SPEECH",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -95,6 +93,20 @@
         "rules": [
             {
                 "t": "set",
+                "p": "salvarChatId",
+                "pt": "msg",
+                "to": "payload.chatId",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "salvarType",
+                "pt": "msg",
+                "to": "payload.type",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
                 "p": "payload",
                 "pt": "msg",
                 "to": "payload.weblink",
@@ -110,7 +122,8 @@
         "y": 100,
         "wires": [
             [
-                "4d66b9fc38700aa4"
+                "4d66b9fc38700aa4",
+                "2d9139abb351346d"
             ]
         ]
     },
@@ -126,7 +139,8 @@
         "y": 300,
         "wires": [
             [
-                "switch_type"
+                "switch_type",
+                "cbb7f4c668c1b4f3"
             ],
             []
         ]
@@ -172,7 +186,14 @@
         "rules": [
             {
                 "t": "set",
-                "p": "user",
+                "p": "salvarType",
+                "pt": "msg",
+                "to": "payload.type",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "salvarChatId",
                 "pt": "msg",
                 "to": "payload.chatId",
                 "tot": "msg"
@@ -182,7 +203,8 @@
                 "p": "payload",
                 "pt": "msg",
                 "to": "payload.content",
-                "tot": "msg"
+                "tot": "msg",
+                "dc": true
             }
         ],
         "x": 430,
@@ -213,8 +235,8 @@
         "y": 440,
         "wires": [
             [
-                "prepare_telegram",
-                "aaf322f4d8bef16e"
+                "aaf322f4d8bef16e",
+                "a0852f96b28af979"
             ]
         ]
     },
@@ -226,29 +248,28 @@
         "rules": [
             {
                 "t": "set",
+                "p": "payload.content",
+                "pt": "msg",
+                "to": "payload.output.generic[0].text",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
                 "p": "payload.chatId",
                 "pt": "msg",
-                "to": "user",
+                "to": "salvarChatId",
                 "tot": "msg"
             },
             {
                 "t": "set",
                 "p": "payload.type",
                 "pt": "msg",
-                "to": "message",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "payload.content",
-                "pt": "msg",
-                "to": "payload.output.generic[0].text",
-                "tot": "msg",
-                "dc": true
+                "to": "salvarType",
+                "tot": "msg"
             }
         ],
-        "x": 820,
-        "y": 320,
+        "x": 1120,
+        "y": 620,
         "wires": [
             [
                 "telegram sender",
@@ -264,8 +285,8 @@
         "bot": "c0964780f1b6ef31",
         "haserroroutput": false,
         "outputs": 1,
-        "x": 1080,
-        "y": 400,
+        "x": 1540,
+        "y": 540,
         "wires": [
             []
         ]
@@ -279,7 +300,8 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
         "x": 390,
@@ -295,10 +317,11 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 750,
+        "x": 660,
         "y": 500,
         "wires": []
     },
@@ -314,8 +337,196 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 990,
-        "y": 260,
+        "x": 1220,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "cbb7f4c668c1b4f3",
+        "type": "debug",
+        "z": "1e6154c3f03a9e31",
+        "name": "debug Telegram Inicio",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 160,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "f680f99020bf237d",
+        "type": "watson-text-to-speech",
+        "z": "1e6154c3f03a9e31",
+        "name": "",
+        "lang": "pt-BR",
+        "langhidden": "pt-BR",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "voice": "pt-BR_IsabelaV3Voice",
+        "voicehidden": "pt-BR_IsabelaV3Voice",
+        "format": "audio/wav",
+        "password": "",
+        "apikey": "CG-KTlvlK9TLyNGeTA6a8GPKmSvF4gZ1m5LVjnfenbv9",
+        "payload-response": true,
+        "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/920a087b-d056-402f-89fe-0b871b2b9b1c",
+        "x": 1140,
+        "y": 380,
+        "wires": [
+            [
+                "fa235fd9c7d8d6fc",
+                "79a86ec9bdef8c2d"
+            ]
+        ]
+    },
+    {
+        "id": "a0852f96b28af979",
+        "type": "switch",
+        "z": "1e6154c3f03a9e31",
+        "name": "",
+        "property": "salvarType",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "voice",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "message",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 870,
+        "y": 480,
+        "wires": [
+            [
+                "bde2e7c4a52279e6"
+            ],
+            [
+                "prepare_telegram"
+            ]
+        ]
+    },
+    {
+        "id": "bde2e7c4a52279e6",
+        "type": "change",
+        "z": "1e6154c3f03a9e31",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.output.generic[0].text",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 300,
+        "wires": [
+            [
+                "f680f99020bf237d",
+                "d4ae28eceff6cd77"
+            ]
+        ]
+    },
+    {
+        "id": "fa235fd9c7d8d6fc",
+        "type": "function",
+        "z": "1e6154c3f03a9e31",
+        "name": "function 1",
+        "func": "msg.payload = {\n    chatId: msg.salvarChatId,\n    type: msg.salvarType,\n    content: msg.payload\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1340,
+        "y": 460,
+        "wires": [
+            [
+                "telegram sender",
+                "44e63beac3a38e9a"
+            ]
+        ]
+    },
+    {
+        "id": "2d9139abb351346d",
+        "type": "debug",
+        "z": "1e6154c3f03a9e31",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "d4ae28eceff6cd77",
+        "type": "debug",
+        "z": "1e6154c3f03a9e31",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1090,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "79a86ec9bdef8c2d",
+        "type": "debug",
+        "z": "1e6154c3f03a9e31",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1320,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "44e63beac3a38e9a",
+        "type": "debug",
+        "z": "1e6154c3f03a9e31",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1550,
+        "y": 400,
         "wires": []
     }
 ]
