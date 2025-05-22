@@ -947,26 +947,6 @@
     },
     {
       "type": "standard",
-      "title": "Especialidade",
-      "parent": "node_9_1746687367061",
-      "context": {
-        "especialidade": "@especialidade"
-      },
-      "conditions": "@especialidade",
-      "dialog_node": "node_10_1747932073989"
-    },
-    {
-      "type": "standard",
-      "title": "Profissional",
-      "parent": "node_8_1747932132732",
-      "context": {
-        "profissional": "@profissional"
-      },
-      "conditions": "@profissional",
-      "dialog_node": "node_10_1747932223653"
-    },
-    {
-      "type": "standard",
       "title": "Informações sobre Exames",
       "output": {
         "generic": [
@@ -1076,6 +1056,25 @@
     },
     {
       "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Perfeito! Consulta com $profissional da área de $especialidade, agendada para $data_horario."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1746687367061",
+      "conditions": "true",
+      "dialog_node": "node_3_1747935552841"
+    },
+    {
+      "type": "standard",
       "title": "Consulta & Resultado",
       "output": {
         "generic": [
@@ -1112,7 +1111,7 @@
       },
       "parent": "node_7_1746688032539",
       "conditions": "@documento",
-      "dialog_node": "node_5_1746688380424"
+      "dialog_node": "node_4_1747935948712"
     },
     {
       "type": "standard",
@@ -1260,6 +1259,26 @@
     },
     {
       "type": "standard",
+      "title": "Data & Hora",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Resultado localizado com base em @documento e @data_horario. Verifique seu resultado acessando o portal ou dirija-se à recepção do hospital."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1747935948712",
+      "conditions": "@data_horario",
+      "dialog_node": "node_6_1747935983016"
+    },
+    {
+      "type": "standard",
       "title": "Tipo de Resultado",
       "output": {
         "generic": [
@@ -1277,26 +1296,6 @@
       "parent": "node_4_1746687998223",
       "conditions": "@exame || @especialidade",
       "dialog_node": "node_7_1746688032539"
-    },
-    {
-      "type": "standard",
-      "title": "Data e Horario",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "Resultado localizado com base em @documento e @data_horario. Verifique seu resultado acessando o portal ou dirija-se à recepção do hospital.\n"
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_5_1746688380424",
-      "conditions": "@data_horario",
-      "dialog_node": "node_7_1746688400833"
     },
     {
       "type": "standard",
@@ -1362,16 +1361,6 @@
       "previous_sibling": "node_1_1746688696334"
     },
     {
-      "type": "standard",
-      "title": "Data & Hora",
-      "parent": "node_10_1747932073989",
-      "context": {
-        "data_horario": "@data_horario"
-      },
-      "conditions": "@data_horario",
-      "dialog_node": "node_8_1747932132732"
-    },
-    {
       "type": "frame",
       "title": "Agendamento de Consulta",
       "output": {
@@ -1382,6 +1371,11 @@
             "selection_policy": "sequential"
           }
         ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_3_1747935552841"
       },
       "conditions": "#agendar_consulta",
       "dialog_node": "node_9_1746687367061",
@@ -1420,7 +1414,7 @@
       "parent": "node_9_1746687367061",
       "variable": "$especialidade",
       "dialog_node": "slot_4_1747892269832",
-      "previous_sibling": "node_10_1747932073989"
+      "previous_sibling": "node_3_1747935552841"
     },
     {
       "type": "slot",
