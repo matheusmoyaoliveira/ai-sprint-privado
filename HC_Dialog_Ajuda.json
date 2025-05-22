@@ -606,23 +606,114 @@
       "values": [
         {
           "type": "synonyms",
+          "value": "assistente social",
+          "synonyms": [
+            "assistente",
+            "suporte social",
+            "técnico em serviço social"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "dentista",
+          "synonyms": [
+            "cirurgião dentista",
+            "odontologista",
+            "odontólogo"
+          ]
+        },
+        {
+          "type": "synonyms",
           "value": "enfermeiro",
-          "synonyms": []
+          "synonyms": [
+            "auxiliar de enfermagem",
+            "enfermeira",
+            " técnico de enfermagem"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "farmacêutico",
+          "synonyms": [
+            "especialista em medicamentos",
+            "farmacêutica"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "fisioterapeuta",
+          "synonyms": [
+            "fisio",
+            "fisioterapeuta clínico",
+            "fisioterapista"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "fonoaudiólogo",
+          "synonyms": [
+            "especialista em fala",
+            "fono",
+            "fonoaudióloga"
+          ]
         },
         {
           "type": "synonyms",
           "value": "médico",
-          "synonyms": []
+          "synonyms": [
+            "clínico",
+            "clínico geral",
+            "doutor",
+            "doutora",
+            "médica",
+            "medico"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "nutricionista",
+          "synonyms": [
+            "dietista",
+            "especialista em nutrição",
+            "nutricionalista"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "psicólogo",
+          "synonyms": [
+            "psicóloga",
+            "psicoterapeuta",
+            "terapeuta"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "radiologista",
+          "synonyms": [
+            "especialista em imagem",
+            "técnico de imagem",
+            "técnico em RX"
+          ]
         },
         {
           "type": "synonyms",
           "value": "recepcionista",
-          "synonyms": []
+          "synonyms": [
+            "assistente de recepção",
+            "atendente",
+            "front desk",
+            "secretaria"
+          ]
         },
         {
           "type": "synonyms",
           "value": "técnico",
-          "synonyms": []
+          "synonyms": [
+            "auxiliar técnico",
+            "operador técnico",
+            "técnico de laboratório"
+          ]
         }
       ],
       "fuzzy_match": true
@@ -791,7 +882,7 @@
           {
             "values": [
               {
-                "text": "Perfeito! Vamos agendar sua consulta com o setor de ortopedia. Qual horário você prefere?"
+                "text": "Qual dia e hora ?"
               }
             ],
             "response_type": "text"
@@ -856,22 +947,23 @@
     },
     {
       "type": "standard",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "Perfeito! Consulta com $profissional da área de $especialidade, agendada para $data_horario."
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
+      "title": "Especialidade",
       "parent": "node_9_1746687367061",
-      "conditions": "true",
-      "dialog_node": "node_10_1747896379701"
+      "context": {
+        "especialidade": "@especialidade"
+      },
+      "conditions": "@especialidade",
+      "dialog_node": "node_10_1747932073989"
+    },
+    {
+      "type": "standard",
+      "title": "Profissional",
+      "parent": "node_8_1747932132732",
+      "context": {
+        "profissional": "@profissional"
+      },
+      "conditions": "@profissional",
+      "dialog_node": "node_10_1747932223653"
     },
     {
       "type": "standard",
@@ -1270,6 +1362,16 @@
       "previous_sibling": "node_1_1746688696334"
     },
     {
+      "type": "standard",
+      "title": "Data & Hora",
+      "parent": "node_10_1747932073989",
+      "context": {
+        "data_horario": "@data_horario"
+      },
+      "conditions": "@data_horario",
+      "dialog_node": "node_8_1747932132732"
+    },
+    {
       "type": "frame",
       "title": "Agendamento de Consulta",
       "output": {
@@ -1318,7 +1420,7 @@
       "parent": "node_9_1746687367061",
       "variable": "$especialidade",
       "dialog_node": "slot_4_1747892269832",
-      "previous_sibling": "node_10_1747896379701"
+      "previous_sibling": "node_10_1747932073989"
     },
     {
       "type": "slot",
@@ -1347,5 +1449,5 @@
   "learning_opt_out": false,
   "language": "pt-br",
   "description": "Dialogo para ajudar os pacientes sobre o app",
-  "name": "Bot_Hospital das Clinicas-dialog"
+  "name": "HC_Dialog_Ajuda"
 }
