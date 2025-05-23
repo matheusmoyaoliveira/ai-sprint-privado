@@ -1617,5 +1617,5 @@
   "learning_opt_out": false,
   "language": "pt-br",
   "description": "Dialogo para ajudar os pacientes sobre o app",
-  "name": "Bot_Hospital das Clinicas-dialog"
+  "name": "HospitalClinicas_Dialog_Ajuda"
 }
