@@ -122,22 +122,6 @@ Para evoluir esse projeto e deixá-lo mais forte para portfólio, os próximos p
 - padronizar nomenclatura dos arquivos JSON
 - criar uma seção de **arquitetura da solução**
 
-## Pontos de atenção no estado atual
-
-Ao inspecionar o arquivo principal de diálogo, aparecem marcadores de conflito de merge como `<<<<<<< HEAD` e `>>>>>>>`, o que indica que o JSON precisa de revisão antes de ser tratado como versão final estável.
-
-## Sugestão de tópicos para o repositório
-
-```text
-chatbot ibm-watson-assistant ai healthcare hospital virtual-assistant automation
-```
-
-## Sugestão de About
-
-```text
-Chatbot de triagem hospitalar com IBM Watson Assistant para automação de atendimento e orientação inicial de pacientes.
-```
-
 ## Autor
 
 **Matheus Moya de Oliveira**  
